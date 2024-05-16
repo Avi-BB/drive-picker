@@ -66,8 +66,8 @@ const App = () => {
         if (data.action === "cancel") {
           console.log("User clicked cancel/close button");
         } else if (data.docs) {
-          const fileId = data.docs[0].id;
-          downloadFile(accessToken, fileId);
+          const file = data.docs[0];
+          downloadFile(accessToken, file);
         }
       },
     });

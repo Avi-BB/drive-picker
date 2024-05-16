@@ -1,5 +1,5 @@
-export const downloadFile = (accessToken, fileId) => {
-    fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {
+export const downloadFile = (accessToken, file) => {
+    fetch(`https://www.googleapis.com/drive/v3/files/${file.id}?alt=media`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -10,7 +10,7 @@ export const downloadFile = (accessToken, fileId) => {
         }
   
         const contentDisposition = response.headers.get('content-disposition');
-        let fileName = 'downloaded_file.pdf'; // Default file name
+        let fileName = file.name || 'downloaded_file'; // Default file name
   
         if (contentDisposition) {
           const match = contentDisposition.match(/filename="(.+)"/);

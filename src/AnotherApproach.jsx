@@ -5,7 +5,8 @@ const App = () => {
   const [openPicker] = GoogleDrivePicker();
   const [gapi, setGapi] = useState(null);
   const [gapiLoaded, setGapiLoaded] = useState(false);
-
+  const clientId = import.meta.env.CLIENT_ID;
+  const developerKey = import.meta.env.DEVELOPER_KEY;
   useEffect(() => {
     const loadGapi =  () => {
       const script = document.createElement("script");
@@ -28,7 +29,7 @@ const App = () => {
     await gapi.load("client:auth2", async () => {
       gapi.client.init({
         clientId:
-          "419729442733-5rmi3p1v8fvd4pld03lct3re9q1omg7i.apps.googleusercontent.com",
+         clientId,
         discoveryDocs: [
           "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest",
         ],
@@ -53,8 +54,8 @@ const App = () => {
   const handlePickerOpen = (accessToken) => {
     openPicker({
       clientId:
-        "419729442733-5rmi3p1v8fvd4pld03lct3re9q1omg7i.apps.googleusercontent.com",
-      developerKey: "AIzaSyDCAwF5RJUdbhf5u9d5w02JnAntMws_cg4",
+       clientId,
+      developerKey: developerKey,
       viewId: "DOCS",
       token: accessToken,
       showUploadView: false,
